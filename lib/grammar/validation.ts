@@ -1,9 +1,20 @@
+import { UD_RELATIONS } from "./types";
 import type { DependencyEdge, SentenceAnalysis } from "./types";
 
 export function validateSentence(sentence: SentenceAnalysis): string[] {
   const errors: string[] = [];
   const tokenIds = new Set(sentence.tokens.map((token) => token.id));
   const indexes = sentence.tokens.map((token) => token.index).sort((a, b) => a - b);
+
+  let cursor = 0;
+  for (const token of [...sentence.tokens].sort((a, b) => a.index - b.index)) {
+    if (sentence.text.slice(token.start, token.end) !== token.form) {
+      errors.push(`${sentence.id}: token ${token.id} span does not reproduce ${JSON.stringify(token.form)}`);
+    }
+    if (token.start < cursor) errors.push(`${sentence.id}: token ${token.id} span overlaps a previous token`);
+    cursor = Math.max(cursor, token.end);
+  }
+  if (cursor > sentence.text.length) errors.push(`${sentence.id}: token span exceeds sentence text length`);
 
   if (new Set(sentence.tokens.map((token) => token.id)).size !== sentence.tokens.length) {
     errors.push(`${sentence.id}: token IDs must be unique`);
@@ -31,6 +42,7 @@ export function validateSentence(sentence: SentenceAnalysis): string[] {
     if (edge.headId === edge.dependentId) {
       errors.push(`${sentence.id}: token ${edge.dependentId} cannot depend on itself`);
     }
+    if (!UD_RELATIONS.includes(edge.relation)) errors.push(`${sentence.id}: unsupported relation ${edge.relation}`);
     if (dependents.has(edge.dependentId)) {
       errors.push(`${sentence.id}: token ${edge.dependentId} has more than one head`);
     }
@@ -54,6 +66,24 @@ export function validateSentence(sentence: SentenceAnalysis): string[] {
   }
 
   errors.push(...validateAcyclicity(sentence, sentence.canonicalEdges, "canonical analysis"));
+  errors.push(...validateConnectedness(sentence, sentence.canonicalEdges));
+  return errors;
+}
+
+function validateConnectedness(sentence: SentenceAnalysis, edges: DependencyEdge[]): string[] {
+  const parentByDependent = new Map(edges.map((edge) => [edge.dependentId, edge.headId]));
+  const errors: string[] = [];
+  for (const token of sentence.tokens) {
+    let current: string | "ROOT" = token.id;
+    const seen = new Set<string>();
+    while (current !== "ROOT" && !seen.has(current)) {
+      seen.add(current);
+      const parent = parentByDependent.get(current);
+      if (!parent) break;
+      current = parent;
+    }
+    if (current !== "ROOT") errors.push(`${sentence.id}: token ${token.id} is not connected to ROOT`);
+  }
   return errors;
 }
 

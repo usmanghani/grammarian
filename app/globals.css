@@ -433,6 +433,7 @@ body {
 .practice-token.is-correct { border-color: #168a68; background: #e9fbf3; color: #0e644d; }
 .practice-token.is-incorrect { border-color: #c94b4b; background: #fff0f0; color: #982f2f; }
 .practice-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+.practice-label-picker { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1rem; }
 .practice-feedback { min-height: 2.4rem; margin-top: 1rem; color: var(--muted-foreground); line-height: 1.5; }
 .practice-feedback p { margin: 0; }
 .feedback-correct { color: #0e644d; }
