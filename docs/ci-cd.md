@@ -25,3 +25,7 @@ Configure these repository or production-environment secrets before enabling dep
 * `VERCEL_PROJECT_ID`: the Vercel project ID associated with this repository.
 
 The workflow uses a production environment and cancels an older in-progress deployment when a newer commit supersedes it. No student answers or lesson data are sent to CI; the MVP content remains versioned in the repository and progress remains browser-local.
+
+## Content drafts
+
+Parser-assisted drafts are generated offline with `scripts/generate-drafts.py` and `tools/stanza-requirements.txt`. The script records the parser version and always emits `reviewStatus: "draft"`; the content validator must pass again after a teacher or linguist reviews the graph before it can be published.
