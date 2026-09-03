@@ -2,14 +2,16 @@
 
 Sentence Lab is a mobile-first web application for learning English sentence structure through dependency diagrams.
 
-The first product slice includes:
+The current product slice includes:
 
-* a reviewed Level 1 sentence;
+* five reviewed Level 1 sentences;
 * a token row with word classes;
 * interactive dependency arcs and relation labels;
 * touch, mouse, and keyboard inspection;
-* Explore and Practice routes;
-* a typed grammar model and content validator;
+* Explore and Practice routes with sentence navigation;
+* guided root, POS, head/relation, full-parse, and find-the-error exercises;
+* deterministic scoring and browser-local best progress;
+* a typed grammar model, Zod schemas, and content validator;
 * product and grammar contracts in `docs/`.
 
 ## Local development
@@ -24,7 +26,7 @@ npm run build
 npm test
 ```
 
-The student-facing MVP is intentionally browser-local. There is no live parser, authentication, classroom data, or remote storage in this slice.
+The student-facing MVP is intentionally browser-local. There is no live parser, authentication, classroom data, or remote storage in this slice. Vercel deployment is defined in `.github/workflows/deploy.yml` and requires the documented Vercel secrets.
 
 ## Repository structure
 
@@ -33,6 +35,7 @@ The student-facing MVP is intentionally browser-local. There is no live parser, 
 * `lib/grammar/`: types, labels, validation, and layout functions
 * `content/lessons/`: reviewed lesson JSON
 * `docs/`: product and grammar contracts
-* `tests/`: starter build and component checks
+* `.github/workflows/`: CI quality gates and Vercel production deployment
+* `tests/`: build and component checks
 
-Read `english-dependency-trainer-build-plan.md` for the sequenced implementation backlog. The next implementation milestone is the practice state machine and answer checking.
+Read `english-dependency-trainer-build-plan.md` for the sequenced implementation backlog and `docs/ci-cd.md` for deployment setup.
