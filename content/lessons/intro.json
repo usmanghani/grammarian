@@ -1,0 +1,42 @@
+{
+  "id": "intro",
+  "title": "Find the sentence’s center",
+  "description": "Start with the main word, then see which words depend on it.",
+  "profileId": "elementary-intro",
+  "level": 1,
+  "sentences": [
+    {
+      "id": "intro-the-small-dog",
+      "text": "The small dog chased the red ball.",
+      "language": "en",
+      "tokens": [
+        { "id": "t1", "index": 1, "form": "The", "lemma": "the", "upos": "DET", "start": 0, "end": 3 },
+        { "id": "t2", "index": 2, "form": "small", "lemma": "small", "upos": "ADJ", "start": 4, "end": 9 },
+        { "id": "t3", "index": 3, "form": "dog", "lemma": "dog", "upos": "NOUN", "start": 10, "end": 13 },
+        { "id": "t4", "index": 4, "form": "chased", "lemma": "chase", "upos": "VERB", "start": 14, "end": 20 },
+        { "id": "t5", "index": 5, "form": "the", "lemma": "the", "upos": "DET", "start": 21, "end": 24 },
+        { "id": "t6", "index": 6, "form": "red", "lemma": "red", "upos": "ADJ", "start": 25, "end": 28 },
+        { "id": "t7", "index": 7, "form": "ball", "lemma": "ball", "upos": "NOUN", "start": 29, "end": 33 },
+        { "id": "t8", "index": 8, "form": ".", "lemma": ".", "upos": "PUNCT", "start": 33, "end": 34 }
+      ],
+      "canonicalEdges": [
+        { "dependentId": "t4", "headId": "ROOT", "relation": "root", "displayLabel": "main word", "explanation": "Chased is the action that organizes the sentence." },
+        { "dependentId": "t3", "headId": "t4", "relation": "nsubj", "displayLabel": "subject", "explanation": "The dog is the one doing the chasing." },
+        { "dependentId": "t7", "headId": "t4", "relation": "obj", "displayLabel": "direct object", "explanation": "The ball is what the dog chased." },
+        { "dependentId": "t1", "headId": "t3", "relation": "det", "displayLabel": "determiner", "explanation": "The tells us which dog we mean." },
+        { "dependentId": "t2", "headId": "t3", "relation": "amod", "displayLabel": "adjective modifier", "explanation": "Small describes the dog." },
+        { "dependentId": "t5", "headId": "t7", "relation": "det", "displayLabel": "determiner", "explanation": "The tells us which ball we mean." },
+        { "dependentId": "t6", "headId": "t7", "relation": "amod", "displayLabel": "adjective modifier", "explanation": "Red describes the ball." },
+        { "dependentId": "t8", "headId": "t4", "relation": "punct", "displayLabel": "punctuation", "explanation": "The period ends the sentence." }
+      ],
+      "concepts": ["root", "subject", "direct-object", "determiner", "adjective-modifier"],
+      "difficulty": 1,
+      "explanation": "Start with chased. Ask what word tells you who chased, what was chased, and which words describe those nouns.",
+      "source": "hand-authored seed sentence",
+      "reviewer": "initial-contract-review",
+      "reviewedAt": "2026-09-03",
+      "reviewStatus": "published",
+      "schemaVersion": 1
+    }
+  ]
+}
