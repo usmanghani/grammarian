@@ -403,6 +403,8 @@ body {
 .full-parse-result dl div { background: var(--secondary); border-radius: 0.75rem; padding: 0.75rem; }
 .full-parse-result dt { color: var(--muted-foreground); font-size: 0.8rem; }
 .full-parse-result dd { font-size: 1.5rem; font-weight: 800; margin: 0.15rem 0 0; }
+.progress-controls { align-items: center; background: var(--secondary); border-radius: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; margin: 1rem 0 3rem; padding: 1rem 1.2rem; }
+.progress-controls h2 { font-size: 1.05rem; margin: 0.25rem 0 0; }
 .status-shell { min-height: 100vh; }
 .status-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; box-shadow: 0 18px 50px color-mix(in srgb, #123d39 10%, transparent); margin: 12vh auto; max-width: 42rem; padding: clamp(1.5rem, 5vw, 3rem); }
 .status-card h1 { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -0.05em; margin: 0.4rem 0 1rem; }
