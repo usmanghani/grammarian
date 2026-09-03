@@ -6,6 +6,7 @@ import introLessonJson from "@/content/lessons/intro.json";
 import { DependencyDiagram } from "@/components/DependencyDiagram/DependencyDiagram";
 import { RootSelectionExercise } from "@/components/Practice/RootSelectionExercise";
 import { PosLabelExercise } from "@/components/Practice/PosLabelExercise";
+import { EdgeConstructionExercise } from "@/components/Practice/EdgeConstructionExercise";
 import { Button } from "@/components/ui/button";
 import { assertValidSentence } from "@/lib/grammar/validation";
 import type { Lesson } from "@/lib/grammar/types";
@@ -39,6 +40,7 @@ export default async function PracticePage({ params }: PracticePageProps) {
 
       <RootSelectionExercise sentence={sentence} />
       <PosLabelExercise sentence={sentence} />
+      <EdgeConstructionExercise sentence={sentence} />
 
       <DependencyDiagram sentence={sentence} showRelationsByDefault={false} />
     </main>
