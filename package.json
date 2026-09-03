@@ -13,6 +13,8 @@
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run content:validate && npm run build && node --test tests/*.test.mjs",
     "content:validate": "node scripts/validate-content.mjs",
+    "conllu:import": "node scripts/conllu.mjs import",
+    "conllu:export": "node scripts/conllu.mjs export",
     "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate"
   },

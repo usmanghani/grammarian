@@ -1,0 +1,6 @@
+# sent_id = conllu-seed
+# text = The dog runs.
+1	The	the	DET	DT	_	2	det	_	_
+2	dog	dog	NOUN	NN	_	3	nsubj	_	_
+3	runs	run	VERB	VBZ	_	0	root	_	_
+4	.	.	PUNCT	.	_	3	punct	_	_

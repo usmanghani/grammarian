@@ -34,6 +34,7 @@ The student-facing MVP is intentionally browser-local. There is no live parser, 
 * `components/DependencyDiagram/`: token and SVG dependency rendering
 * `lib/grammar/`: types, labels, validation, and layout functions
 * `content/lessons/`: reviewed lesson JSON
+* `scripts/conllu.mjs`: basic CoNLL-U import/export for review tooling
 * `docs/`: product and grammar contracts
 * `.github/workflows/`: CI quality gates and Vercel production deployment
 * `tests/`: build and component checks
