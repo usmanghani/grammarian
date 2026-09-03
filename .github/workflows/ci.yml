@@ -28,6 +28,7 @@ jobs:
         run: npm run lint
       - name: Type-check
         run: npx tsc --noEmit
+      - name: Verify Vercel build
+        run: npm run build:next
       - name: Build and test
         run: npm test
-

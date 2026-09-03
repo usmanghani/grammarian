@@ -16,7 +16,7 @@ The workflow is `.github/workflows/ci.yml`.
 
 ## Continuous deployment
 
-The deploy workflow runs for pushes to `main` and can also be started manually. It repeats the content, lint, type-check, and Next.js production build gates, then deploys a prebuilt artifact to Vercel.
+The deploy workflow runs for pushes to `main` and can also be started manually. It repeats the content, lint, type-check, and Next.js production build gates, then deploys a prebuilt artifact to Vercel. The workflow pins Vercel CLI `59.11.2` for repeatable builds.
 
 Configure these repository or production-environment secrets before enabling deployment:
 
