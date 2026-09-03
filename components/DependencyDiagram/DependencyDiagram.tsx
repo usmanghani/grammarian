@@ -88,9 +88,12 @@ export function DependencyDiagram({
   const rootToken = sentence.tokens.find((token) => token.id === rootEdge?.dependentId);
   const rootX = rootToken ? tokenCenters[rootToken.id] : canvasWidth / 2;
   const visibleEdges = sentence.canonicalEdges.filter((edge) => edge.relation !== "root");
+  const [stepMode, setStepMode] = useState(false);
+  const [revealedEdgeCount, setRevealedEdgeCount] = useState(visibleEdges.length);
+  const displayEdges = stepMode ? visibleEdges.slice(0, revealedEdgeCount) : visibleEdges;
   const edgeLayouts = useMemo(
-    () => layoutEdges(visibleEdges, tokenCenters),
-    [tokenCenters, visibleEdges],
+    () => layoutEdges(displayEdges, tokenCenters),
+    [tokenCenters, displayEdges],
   );
   const maxLane = edgeLayouts.reduce((max, edge) => Math.max(max, edge.lane), 0);
   const svgHeight = Math.max(170, (maxLane + 1) * ARC_LANE_HEIGHT + 58);
@@ -144,8 +147,34 @@ export function DependencyDiagram({
           >
             Relations
           </Button>
+          <Button
+            type="button"
+            size="sm"
+            variant={stepMode ? "secondary" : "outline"}
+            aria-pressed={stepMode}
+            onClick={() => {
+              setStepMode((value) => !value);
+              setRevealedEdgeCount(1);
+            }}
+          >
+            {stepMode ? "Exit steps" : "Step through"}
+          </Button>
         </div>
       </div>
+
+      {stepMode ? (
+        <div className="diagram-step-controls" aria-live="polite">
+          <span>Showing {Math.min(revealedEdgeCount, visibleEdges.length)} of {visibleEdges.length} connections</span>
+          <Button
+            type="button"
+            size="sm"
+            onClick={() => setRevealedEdgeCount((count) => Math.min(visibleEdges.length, count + 1))}
+            disabled={revealedEdgeCount >= visibleEdges.length}
+          >
+            Show next connection
+          </Button>
+        </div>
+      ) : null}
 
       <div className="diagram-scroll" tabIndex={0} aria-label="Scrollable sentence diagram">
         <div className="diagram-canvas" style={{ width: `${canvasWidth}px` }}>

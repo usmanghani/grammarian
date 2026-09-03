@@ -496,6 +496,9 @@ body {
   justify-content: flex-end;
 }
 
+.diagram-step-controls { align-items: center; background: var(--secondary); display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: space-between; padding: 0.65rem 1.2rem; }
+.diagram-step-controls span { color: var(--muted-foreground); font-size: 0.85rem; }
+
 .diagram-scroll {
   overflow-x: auto;
   overscroll-behavior-x: contain;
