@@ -12,7 +12,6 @@ type Phase = "pos" | "root" | "edges" | "review";
 
 export function FullParseExercise({ sentence }: { sentence: SentenceAnalysis }) {
   const nonPunctuation = useMemo(() => sentence.tokens.filter((token) => token.upos !== "PUNCT"), [sentence.tokens]);
-  const rootId = sentence.canonicalEdges.find((edge) => edge.relation === "root")?.dependentId ?? null;
   const [phase, setPhase] = useState<Phase>("pos");
   const [activeTokenId, setActiveTokenId] = useState<string | null>(nonPunctuation[0]?.id ?? null);
   const [pos, setPos] = useState<Record<string, UposTag>>({});
@@ -53,7 +52,7 @@ export function FullParseExercise({ sentence }: { sentence: SentenceAnalysis }) 
     {phase === "pos" ? <>
       <div className="practice-token-row" role="group" aria-label="Choose a word to label">{nonPunctuation.map((token) => <Button key={token.id} type="button" variant={activeTokenId === token.id ? "secondary" : "outline"} className="practice-token" onClick={() => setActiveTokenId(token.id)}><span>{token.form}</span><small>{pos[token.id] ? getPosLabel(pos[token.id]).shortLabel : token.index}</small></Button>)}</div>
       <div className="practice-label-picker" aria-label="Word class choices">{availablePos.map((tag) => <Button key={tag} size="sm" type="button" variant={activeTokenId && pos[activeTokenId] === tag ? "secondary" : "outline"} onClick={() => selectPos(tag)}>{getPosLabel(tag).shortLabel}</Button>)}</div>
-      <div className="practice-actions"><Button type="button" onClick={() => { setRoot(rootId); setPhase("root"); setActiveTokenId(null); }} disabled={!allPosLabeled}>Continue to main word</Button></div>
+      <div className="practice-actions"><Button type="button" onClick={() => { setRoot(null); setPhase("root"); setActiveTokenId(null); }} disabled={!allPosLabeled}>Continue to main word</Button></div>
     </> : null}
     {phase === "root" ? <>
       <div className="practice-token-row" role="group" aria-label="Choose the main word">{nonPunctuation.map((token) => <Button key={token.id} type="button" variant={root === token.id ? "secondary" : "outline"} className="practice-token" onClick={() => setRoot(token.id)}>{token.form}</Button>)}</div>
