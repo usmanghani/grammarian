@@ -396,6 +396,13 @@ body {
 .sentence-gallery-item .lesson-next { margin-top: 0; }
 .practice-navigation { align-items: center; display: flex; justify-content: space-between; gap: 1rem; margin: 1rem 0 3rem; }
 .practice-complete-note { color: var(--muted-foreground); font-size: 0.9rem; }
+.full-parse-progress { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+.full-parse-progress span { border: 1px solid var(--border); border-radius: 999px; color: var(--muted-foreground); font-size: 0.8rem; padding: 0.35rem 0.65rem; }
+.full-parse-progress .is-active { border-color: var(--primary); color: var(--primary); }
+.full-parse-result dl { display: grid; gap: 0.6rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 1rem 0; }
+.full-parse-result dl div { background: var(--secondary); border-radius: 0.75rem; padding: 0.75rem; }
+.full-parse-result dt { color: var(--muted-foreground); font-size: 0.8rem; }
+.full-parse-result dd { font-size: 1.5rem; font-weight: 800; margin: 0.15rem 0 0; }
 
 .practice-card {
   background: var(--card);

@@ -7,6 +7,7 @@ import { DependencyDiagram } from "@/components/DependencyDiagram/DependencyDiag
 import { RootSelectionExercise } from "@/components/Practice/RootSelectionExercise";
 import { PosLabelExercise } from "@/components/Practice/PosLabelExercise";
 import { EdgeConstructionExercise } from "@/components/Practice/EdgeConstructionExercise";
+import { FullParseExercise } from "@/components/Practice/FullParseExercise";
 import { Button } from "@/components/ui/button";
 import { assertValidSentence } from "@/lib/grammar/validation";
 import type { Lesson } from "@/lib/grammar/types";
@@ -44,6 +45,7 @@ export default async function PracticePage({ params, searchParams }: PracticePag
       <RootSelectionExercise sentence={sentence} />
       <PosLabelExercise sentence={sentence} />
       <EdgeConstructionExercise sentence={sentence} />
+      <FullParseExercise sentence={sentence} />
 
       <nav className="practice-navigation" aria-label="Practice sentence navigation">
         {sentenceIndex > 0 ? <Button asChild variant="outline"><Link href={`/practice/${lesson.id}?sentence=${sentenceIndex - 1}`}><ArrowLeft size={15} /> Previous sentence</Link></Button> : <span />}
