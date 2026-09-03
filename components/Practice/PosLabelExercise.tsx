@@ -6,9 +6,8 @@ import { Button } from "@/components/ui/button";
 import { POS_LABELS } from "@/lib/grammar/labels";
 import type { SentenceAnalysis, UposTag } from "@/lib/grammar/types";
 
-const lessonTags: UposTag[] = ["NOUN", "VERB", "ADJ", "DET", "PUNCT"];
-
 export function PosLabelExercise({ sentence }: { sentence: SentenceAnalysis }) {
+  const lessonTags = Array.from(new Set<UposTag>(["NOUN", "VERB", "ADJ", "DET", "PUNCT", ...sentence.tokens.map((token) => token.upos)]));
   const [activeTokenId, setActiveTokenId] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<string, UposTag>>({});
   const [checked, setChecked] = useState(false);

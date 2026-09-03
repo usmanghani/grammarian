@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Network } from "lucide-react";
+import { ArrowLeft, ArrowRight, Network } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import introLessonJson from "@/content/lessons/intro.json";
@@ -15,12 +15,15 @@ const lesson = introLessonJson as unknown as Lesson;
 
 type PracticePageProps = {
   params: Promise<{ lessonId: string }>;
+  searchParams: Promise<{ sentence?: string }>;
 };
 
-export default async function PracticePage({ params }: PracticePageProps) {
+export default async function PracticePage({ params, searchParams }: PracticePageProps) {
   const { lessonId } = await params;
+  const { sentence: sentenceParam } = await searchParams;
   if (lessonId !== lesson.id) notFound();
-  const sentence = assertValidSentence(lesson.sentences[0]);
+  const sentenceIndex = Math.max(0, Math.min(lesson.sentences.length - 1, Number.parseInt(sentenceParam ?? "0", 10) || 0));
+  const sentence = assertValidSentence(lesson.sentences[sentenceIndex]);
 
   return (
     <main className="site-shell lesson-shell">
@@ -33,7 +36,7 @@ export default async function PracticePage({ params }: PracticePageProps) {
       </header>
 
       <section className="lesson-header practice-header">
-        <p className="eyebrow">Guided practice · 1 of 5</p>
+        <p className="eyebrow">Guided practice · sentence {sentenceIndex + 1} of {lesson.sentences.length}</p>
         <h1>Find the main word</h1>
         <p>Tap the word that organizes this sentence. You can inspect the completed map below if you need a reminder.</p>
       </section>
@@ -41,6 +44,11 @@ export default async function PracticePage({ params }: PracticePageProps) {
       <RootSelectionExercise sentence={sentence} />
       <PosLabelExercise sentence={sentence} />
       <EdgeConstructionExercise sentence={sentence} />
+
+      <nav className="practice-navigation" aria-label="Practice sentence navigation">
+        {sentenceIndex > 0 ? <Button asChild variant="outline"><Link href={`/practice/${lesson.id}?sentence=${sentenceIndex - 1}`}><ArrowLeft size={15} /> Previous sentence</Link></Button> : <span />}
+        {sentenceIndex < lesson.sentences.length - 1 ? <Button asChild><Link href={`/practice/${lesson.id}?sentence=${sentenceIndex + 1}`}>Next sentence <ArrowRight size={15} /></Link></Button> : <span className="practice-complete-note">You reached the end of this reviewed set.</span>}
+      </nav>
 
       <DependencyDiagram sentence={sentence} showRelationsByDefault={false} />
     </main>

@@ -37,6 +37,108 @@
       "reviewedAt": "2026-09-03",
       "reviewStatus": "published",
       "schemaVersion": 1
+    },
+    {
+      "id": "intro-birds-fly",
+      "text": "Birds fly.",
+      "language": "en",
+      "tokens": [
+        { "id": "b1", "index": 1, "form": "Birds", "lemma": "bird", "upos": "NOUN", "start": 0, "end": 5 },
+        { "id": "b2", "index": 2, "form": "fly", "lemma": "fly", "upos": "VERB", "start": 6, "end": 9 },
+        { "id": "b3", "index": 3, "form": ".", "lemma": ".", "upos": "PUNCT", "start": 9, "end": 10 }
+      ],
+      "canonicalEdges": [
+        { "dependentId": "b2", "headId": "ROOT", "relation": "root", "displayLabel": "main word", "explanation": "Fly tells us the main action." },
+        { "dependentId": "b1", "headId": "b2", "relation": "nsubj", "displayLabel": "subject", "explanation": "Birds are the ones flying." },
+        { "dependentId": "b3", "headId": "b2", "relation": "punct", "displayLabel": "punctuation", "explanation": "The period ends the sentence." }
+      ],
+      "concepts": ["root", "subject"],
+      "difficulty": 1,
+      "explanation": "Fly is the action and birds are the ones doing it.",
+      "source": "hand-authored seed sentence",
+      "reviewer": "initial-contract-review",
+      "reviewedAt": "2026-09-03",
+      "reviewStatus": "published",
+      "schemaVersion": 1
+    },
+    {
+      "id": "intro-mia-reads",
+      "text": "Mia reads books.",
+      "language": "en",
+      "tokens": [
+        { "id": "m1", "index": 1, "form": "Mia", "lemma": "Mia", "upos": "PROPN", "start": 0, "end": 3 },
+        { "id": "m2", "index": 2, "form": "reads", "lemma": "read", "upos": "VERB", "start": 4, "end": 9 },
+        { "id": "m3", "index": 3, "form": "books", "lemma": "book", "upos": "NOUN", "start": 10, "end": 15 },
+        { "id": "m4", "index": 4, "form": ".", "lemma": ".", "upos": "PUNCT", "start": 15, "end": 16 }
+      ],
+      "canonicalEdges": [
+        { "dependentId": "m2", "headId": "ROOT", "relation": "root", "displayLabel": "main word", "explanation": "Reads tells us the main action." },
+        { "dependentId": "m1", "headId": "m2", "relation": "nsubj", "displayLabel": "subject", "explanation": "Mia is doing the reading." },
+        { "dependentId": "m3", "headId": "m2", "relation": "obj", "displayLabel": "direct object", "explanation": "Books are what Mia reads." },
+        { "dependentId": "m4", "headId": "m2", "relation": "punct", "displayLabel": "punctuation", "explanation": "The period ends the sentence." }
+      ],
+      "concepts": ["root", "subject", "direct-object"],
+      "difficulty": 1,
+      "explanation": "Reads is the main action, Mia does it, and books receive it.",
+      "source": "hand-authored seed sentence",
+      "reviewer": "initial-contract-review",
+      "reviewedAt": "2026-09-03",
+      "reviewStatus": "published",
+      "schemaVersion": 1
+    },
+    {
+      "id": "intro-cat-sleeps",
+      "text": "The cat sleeps quietly.",
+      "language": "en",
+      "tokens": [
+        { "id": "c1", "index": 1, "form": "The", "lemma": "the", "upos": "DET", "start": 0, "end": 3 },
+        { "id": "c2", "index": 2, "form": "cat", "lemma": "cat", "upos": "NOUN", "start": 4, "end": 7 },
+        { "id": "c3", "index": 3, "form": "sleeps", "lemma": "sleep", "upos": "VERB", "start": 8, "end": 14 },
+        { "id": "c4", "index": 4, "form": "quietly", "lemma": "quietly", "upos": "ADV", "start": 15, "end": 22 },
+        { "id": "c5", "index": 5, "form": ".", "lemma": ".", "upos": "PUNCT", "start": 22, "end": 23 }
+      ],
+      "canonicalEdges": [
+        { "dependentId": "c3", "headId": "ROOT", "relation": "root", "displayLabel": "main word", "explanation": "Sleeps tells us the main action." },
+        { "dependentId": "c2", "headId": "c3", "relation": "nsubj", "displayLabel": "subject", "explanation": "The cat is doing the sleeping." },
+        { "dependentId": "c1", "headId": "c2", "relation": "det", "displayLabel": "determiner", "explanation": "The specifies which cat we mean." },
+        { "dependentId": "c4", "headId": "c3", "relation": "advmod", "displayLabel": "adverb modifier", "explanation": "Quietly tells us how the cat sleeps." },
+        { "dependentId": "c5", "headId": "c3", "relation": "punct", "displayLabel": "punctuation", "explanation": "The period ends the sentence." }
+      ],
+      "concepts": ["root", "subject", "determiner", "adverb-modifier"],
+      "difficulty": 1,
+      "explanation": "Sleeps is the action; the cat does it, and quietly describes the action.",
+      "source": "hand-authored seed sentence",
+      "reviewer": "initial-contract-review",
+      "reviewedAt": "2026-09-03",
+      "reviewStatus": "published",
+      "schemaVersion": 1
+    },
+    {
+      "id": "intro-teacher-helps",
+      "text": "A teacher helps students.",
+      "language": "en",
+      "tokens": [
+        { "id": "tch1", "index": 1, "form": "A", "lemma": "a", "upos": "DET", "start": 0, "end": 1 },
+        { "id": "tch2", "index": 2, "form": "teacher", "lemma": "teacher", "upos": "NOUN", "start": 2, "end": 9 },
+        { "id": "tch3", "index": 3, "form": "helps", "lemma": "help", "upos": "VERB", "start": 10, "end": 15 },
+        { "id": "tch4", "index": 4, "form": "students", "lemma": "student", "upos": "NOUN", "start": 16, "end": 24 },
+        { "id": "tch5", "index": 5, "form": ".", "lemma": ".", "upos": "PUNCT", "start": 24, "end": 25 }
+      ],
+      "canonicalEdges": [
+        { "dependentId": "tch3", "headId": "ROOT", "relation": "root", "displayLabel": "main word", "explanation": "Helps tells us the main action." },
+        { "dependentId": "tch2", "headId": "tch3", "relation": "nsubj", "displayLabel": "subject", "explanation": "The teacher is doing the helping." },
+        { "dependentId": "tch4", "headId": "tch3", "relation": "obj", "displayLabel": "direct object", "explanation": "Students receive the help." },
+        { "dependentId": "tch1", "headId": "tch2", "relation": "det", "displayLabel": "determiner", "explanation": "A introduces the teacher." },
+        { "dependentId": "tch5", "headId": "tch3", "relation": "punct", "displayLabel": "punctuation", "explanation": "The period ends the sentence." }
+      ],
+      "concepts": ["root", "subject", "direct-object", "determiner"],
+      "difficulty": 1,
+      "explanation": "Helps is the action, a teacher does it, and students receive the help.",
+      "source": "hand-authored seed sentence",
+      "reviewer": "initial-contract-review",
+      "reviewedAt": "2026-09-03",
+      "reviewStatus": "published",
+      "schemaVersion": 1
     }
   ]
 }

@@ -390,6 +390,13 @@ body {
 .lesson-next p { margin: 0; }
 .lesson-next .eyebrow { margin-bottom: 0.3rem; }
 
+.sentence-gallery { display: grid; gap: 1.5rem; }
+.sentence-gallery-item { display: grid; gap: 0.75rem; }
+.sentence-gallery-heading h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); margin: 0.35rem 0 0; }
+.sentence-gallery-item .lesson-next { margin-top: 0; }
+.practice-navigation { align-items: center; display: flex; justify-content: space-between; gap: 1rem; margin: 1rem 0 3rem; }
+.practice-complete-note { color: var(--muted-foreground); font-size: 0.9rem; }
+
 .practice-card {
   background: var(--card);
   border: 1px solid var(--border);

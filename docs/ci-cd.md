@@ -16,11 +16,12 @@ The workflow is `.github/workflows/ci.yml`.
 
 ## Continuous deployment
 
-The deploy workflow runs for pushes to `main` and can also be started manually. It repeats the complete test/build gate and then deploys the generated Cloudflare Worker and client assets from `dist/server/wrangler.json`.
+The deploy workflow runs for pushes to `main` and can also be started manually. It repeats the content, lint, type-check, and Next.js production build gates, then deploys a prebuilt artifact to Vercel.
 
 Configure these repository or production-environment secrets before enabling deployment:
 
-* `CLOUDFLARE_API_TOKEN`: a token allowed to deploy Workers and assets;
-* `CLOUDFLARE_ACCOUNT_ID`: the Cloudflare account that owns the deployment.
+* `VERCEL_TOKEN`: a Vercel personal or team token allowed to deploy;
+* `VERCEL_ORG_ID`: the Vercel team ID, or the account ID for a personal project;
+* `VERCEL_PROJECT_ID`: the Vercel project ID associated with this repository.
 
 The workflow uses a production environment and cancels an older in-progress deployment when a newer commit supersedes it. No student answers or lesson data are sent to CI; the MVP content remains versioned in the repository and progress remains browser-local.

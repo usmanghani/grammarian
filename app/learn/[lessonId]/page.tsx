@@ -17,7 +17,7 @@ type LearnPageProps = {
 export default async function LearnPage({ params }: LearnPageProps) {
   const { lessonId } = await params;
   if (lessonId !== lesson.id) notFound();
-  const sentence = assertValidSentence(lesson.sentences[0]);
+  const sentences = lesson.sentences.map(assertValidSentence);
 
   return (
     <main className="site-shell lesson-shell">
@@ -35,7 +35,15 @@ export default async function LearnPage({ params }: LearnPageProps) {
         <p>{lesson.description} Begin with the completed map, then try making the connections yourself.</p>
       </section>
 
-      <DependencyDiagram sentence={sentence} />
+      <div className="sentence-gallery" aria-label="Reviewed lesson sentences">
+        {sentences.map((sentence, index) => (
+          <article className="sentence-gallery-item" key={sentence.id}>
+            <div className="sentence-gallery-heading"><span className="practice-step">Sentence {index + 1} of {sentences.length}</span><h2>{sentence.text}</h2></div>
+            <DependencyDiagram sentence={sentence} />
+            <div className="lesson-next"><p>Ready to practice this sentence?</p><Button asChild size="sm"><Link href={`/practice/${lesson.id}?sentence=${index}`}>Practice sentence <ArrowRight size={15} /></Link></Button></div>
+          </article>
+        ))}
+      </div>
 
       <div className="lesson-next">
         <div>
